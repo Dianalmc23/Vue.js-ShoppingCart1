@@ -63,12 +63,21 @@ const showAddItem = ref(false);
 </form>
 <!-- Entrega de lista  -->
    <ul>
-    <li v-for="({id,label, purchased, highPriority}, ) in items"
+   <li v-for="({id,label, purchased, highPriority}, ) in items"
     :class="{priority: highPriority, strikeout:purchased}"
     v-bind:key="id">
-    ⭐{{ label }}</li>
-    
+    ⭐{{ label }}
+   </li>
    </ul>
+
+   <!-- <ul>
+   <li v-for="({id,label, purchased, highPriority}, ) in items"
+    :class="[purchased ? 'strikeout':'', highPriority ? 'priority':'']"
+    v-bind:key="id">
+    ⭐{{ label }}
+   </li>
+   </ul> -->
+
    <!-- Mensaje condicional  -->
    <p v-if="items.length === 0">No hay elementos en la lista 🚫</p>  
 </template>
