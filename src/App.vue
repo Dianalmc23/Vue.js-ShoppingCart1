@@ -15,6 +15,9 @@ const items = ref([
 {id: 4, label:'Nuez', purchased: false, highPriority: true},
 {id: 5, label:'Arandanos', purchased: true, highPriority: true}
 ]);
+const togglePurchased = (item) => {
+item.purchased = !item.purchased
+};
 const newItem = ref('');
 const newItemHighPriority = ref(false);
  
@@ -63,7 +66,9 @@ const showAddItem = ref(false);
 </form>
 <!-- Entrega de lista  -->
    <ul>
-   <li v-for="({id,label, purchased, highPriority}, ) in items"
+   <li 
+    v-for="({id,label, purchased, highPriority}, index ) in items"
+    @click="togglePurchased(items[index])"
     :class="{priority: highPriority, strikeout:purchased}"
     v-bind:key="id">
     ⭐{{ label }}
@@ -71,7 +76,8 @@ const showAddItem = ref(false);
    </ul>
 
    <!-- <ul>
-   <li v-for="({id,label, purchased, highPriority}, ) in items"
+   <li 
+    v-for="({id,label, purchased, highPriority}, ) in items"
     :class="[purchased ? 'strikeout':'', highPriority ? 'priority':'']"
     v-bind:key="id">
     ⭐{{ label }}
